@@ -1,0 +1,31 @@
+{
+  "name": "cisco-gsx-fy19-cms",
+  "version": "1.0.1",
+  "description": "Cockpit CMS - This is just to add deploy scripts",
+  "author": "Intergalactic Agency",
+  "license": "UNLICENSED",
+  "engines": {
+    "npm": ">=3"
+  },
+  "config": {
+    "client": "cisco",
+    "project": "gsx",
+    "version": "fy19",
+    "repo": "cms",
+    "docker_remote": "990604148966.dkr.ecr.us-west-2.amazonaws.com/cisco/gsx/fy19/cms"
+  },
+  "scripts": {
+    "upver": "standard-version",
+    "docker:login": "$(aws ecr get-login --no-include-email --region us-west-2)",
+    "docker:build": "docker build -t $npm_package_config_client/$npm_package_config_project/$npm_package_config_version/$npm_package_config_repo:$npm_package_version .",
+    "docker:tagRemote": "docker tag $npm_package_config_client/$npm_package_config_project/$npm_package_config_version/$npm_package_config_repo:$npm_package_version $npm_package_config_docker_remote:$npm_package_config_repo-$npm_package_version",
+    "docker:push": "docker push $npm_package_config_docker_remote:$npm_package_config_repo-$npm_package_version",
+    "docker:run": "docker run --rm -it $npm_package_config_client/$npm_package_config_project/$npm_package_config_version/$npm_package_config_repo:$npm_package_version",
+    "deploy": "npm run docker:login && npm run upver && npm run docker:build && npm run docker:tagRemote && npm run docker:push"
+  },
+  "dependencies": {},
+  "private": true,
+  "devDependencies": {
+    "standard-version": "^4.4.0"
+  }
+}
