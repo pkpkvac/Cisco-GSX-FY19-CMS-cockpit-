@@ -20,6 +20,9 @@ COPY cockpit /var/www/html
 # Copy base API Keys
 COPY api.keys.php /var/www/html/storage/api.keys.php
 
+# Copy php.ini File
+COPY php.ini /usr/local/etc/php/php.ini
+
 # Copy collections
 COPY collections /var/www/html/storage/collections
 
