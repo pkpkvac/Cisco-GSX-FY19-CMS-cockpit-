@@ -17,10 +17,17 @@ RUN chown -R www-data:www-data /var/www/html
 # Copy cockpit (https://github.com/agentejo/cockpit.git | master)
 COPY cockpit /var/www/html
 
+# Copy base API Keys
+COPY api.keys.php /var/www/html/storage/api.keys.php
+
+# Copy collections
+COPY collections /var/www/html/storage/collections
+
 # Create config folder and set both config and storage to writeable
 RUN mkdir -p /var/www/html/config
 RUN chmod -R 775 /var/www/html/config
-RUN chmod -R 777 /var/www/html/storage
+RUN chmod -R 775 /var/www/html/storage
+RUN chmod 644 /var/www/html/storage/api.keys.php
 
 COPY entry.sh .
 
