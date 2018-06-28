@@ -25,8 +25,8 @@ COPY collections /var/www/html/storage/collections
 
 # Create config folder and set both config and storage to writeable
 RUN mkdir -p /var/www/html/config
-RUN chmod -R 775 /var/www/html/config
-RUN chmod -R 775 /var/www/html/storage
+RUN chmod -R 755 /var/www/html/config
+RUN chmod -R 755 /var/www/html/storage
 RUN chmod 644 /var/www/html/storage/api.keys.php
 RUN find /var/www/html/storage/collections/. -name "*.php" | xargs chmod 644
 
