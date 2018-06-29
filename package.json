@@ -1,6 +1,6 @@
 {
   "name": "cisco-gsx-fy19-cms",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Cockpit CMS - This is just to add deploy scripts",
   "author": "Intergalactic Agency",
   "license": "UNLICENSED",
